@@ -126,9 +126,9 @@
 										<div class="cart-btns">
 											<a href="{{ route('cart.index') }}">Voir panier</a>
 											@if (Cart::content()->isNotEmpty())
-											<a href="{{ route('order.index') }}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{ route('order.index') }}">Commander  <i class="fa fa-arrow-circle-right"></i></a>
 											@else
-											<a href=" {{ route('acceuil') }}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=" {{ route('acceuil') }}">Commander  <i class="fa fa-arrow-circle-right"></i></a>
 											@endif
 											
 										</div>
