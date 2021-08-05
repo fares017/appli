@@ -47,7 +47,7 @@
 						<ul class="section-tab-nav tab-nav">
 							{{-- <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li> --}}
 							@foreach (App\Category::all() as $category)
-							<li class="{{ $category->slug == request()->categorie ?"active":"" }}"><a href="{{ route('acceuil', ['categorie' => $category->slug]) }}"  >{{ $category->name }}</a></li>
+							<li class="{{ $category->slug == request()->categorie ?"active":"" }}"><a href="{{ route('acceuil', ['categorie' => $category->slug, 'language' => app()->getLocale()]) }}"  >{{ $category->name }}</a></li>
 							@endforeach
 						</ul>
 					</div>
@@ -81,7 +81,7 @@
 												{{ $category->name }}/
 											@endforeach
 										</p>
-										<h3 class="product-name"><a href="{{  route('product.show', $product->slug ) }}">{{ $product->title }}</a></h3>
+									    <h3 class="product-name"><a href="{{  route('product.show', ['slug' => $product->slug, 'language' => app()->getLocale() ]) }}">{{ $product->title }}</a></h3>
 										<h4 class="product-price">{{ $product->getprice() }} <del class="product-old-price">{{ $product->getprice() }}</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -91,19 +91,19 @@
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<form id="wishlist_form{{ $loop->index+1 }}" action="{{ route('wishlist.store') }}" method="POST">
+											<form id="wishlist_form{{ $loop->index+1 }}" action="{{ route('wishlist.store',  app()->getLocale() ) }}" method="POST">
 												@csrf
 												<input type="hidden" name="product_id" value="{{ $product->id }}">
 											</form>
 											<button onclick="document.getElementById('wishlist_form{{ $loop->index+1 }}').submit();" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Ajouter à la liste d'envie</span></button>
-											<button class="quick-view" onclick="window.location.href='{{ route('product.show', $product->slug ) }}'"><i class="fa fa-eye"></i><span class="tooltipp">Voir le produit</span></button>
+											<button class="quick-view" onclick="window.location.href='{{ route('product.show', ['slug' => $product->slug, 'language' => app()->getLocale()]) }}'"><i class="fa fa-eye"></i><span class="tooltipp">Voir le produit</span></button>
 											
 
 										</div>
 									</div>
 									@if ($product->stock != 0)
 										<div class="add-to-cart">
-											<form action="{{ route('cart.store') }}" method="POST" >
+											<form action="{{ route('cart.store', app()->getLocale()) }}" method="POST" >
 												@csrf
 												<input type="hidden" name="product_id" value="{{ $product->id }}">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>

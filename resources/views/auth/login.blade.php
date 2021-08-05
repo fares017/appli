@@ -14,7 +14,7 @@
                         <div class="card-header">{{ __("S'identifier") }}</div>
         
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('login', app()->getLocale()) }}">
                                 @csrf
         
                                 <div class="form-group row">
@@ -64,7 +64,7 @@
                                         </button>
         
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            <a class="btn btn-link" href="{{ route('password.request', app()->getLocale()) }}">
                                                 {{ __('Vous avez oubliez votre mot de pass?') }}
                                             </a>
                                         @endif

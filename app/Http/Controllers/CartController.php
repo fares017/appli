@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\Environment\Console;
 
 class CartController extends Controller
 {
@@ -40,25 +41,24 @@ class CartController extends Controller
     public function store(Request $request)
 
     {
-        
+
        
         $duplicata = Cart::search(function ($cartItem, $rowId) use ($request) {
             return $cartItem->id == $request->product_id;
         });
-       
+   
         if ($duplicata->isNotEmpty()) {
 
-            return redirect()->route('acceuil');
+            return redirect()->route('acceuil', app()->getLocale());
         }
-       
-
+  
         $product = Product::find($request->product_id);
-       
      
+
         Cart::add($product->id, $product->title, 1, $product->price)
         ->associate('App\Product');
 
-        return redirect()->route('acceuil');
+        return redirect()->route('acceuil',  app()->getLocale());
     }
 
     /**
@@ -93,6 +93,7 @@ class CartController extends Controller
     public function update(Request $request, $rowid)
     {
 
+          
         $data = request()->json()->all();
 
         $validates = Validator::make($request->all(), [
@@ -124,7 +125,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($rowId)
+    public function destroy($language, $rowId)
     {
         Cart::remove($rowId);
         return back();

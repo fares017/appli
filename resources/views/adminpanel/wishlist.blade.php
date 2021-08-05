@@ -42,9 +42,9 @@
 						<img class="card-img-top img-thumbnail" src="{{ asset('storage/'.$product->image)  }}" alt="Card image cap" height="50%" width="50%">
 						<div class="card-body">
 						  <h5 class="card-title">{{ $product->title }}</h5>
-						  <a href="{{  route('product.show', $product->slug )}}" class="btn btn-success">J'achete</a>
+						  <a href="{{  route('product.show', ["slug" => $product->slug, "language" => app()->getLocale() ])}}" class="btn btn-success">J'achete</a>
 						  <button onclick="document.getElementById('wishlist_form').submit();" class="btn btn-danger pull-right"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-						  <form id="wishlist_form" action="{{ route('wishlist.destroy', $product->id ) }}" method="POST">
+						  <form id="wishlist_form" action="{{ route('wishlist.destroy', ['rowid' => $product->id, "language" => app()->getLocale()] ) }}" method="POST">
 							<input type="hidden" name="wishlist_id" value="{{ $wishlist->id }}">
 							@csrf
 							@method('DELETE')

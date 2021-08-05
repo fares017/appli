@@ -35,7 +35,7 @@
 						<h3 class="title">Adresse de livraison</h3>
 					</div>
 
-					<form id="myform" action="{{ route('order.store') }}" method="post">
+					<form id="myform" action="{{ route('order.store', app()->getLocale()) }}" method="post">
 						@csrf
 						<div class="form-group">
 							<input class="input" type="text" name="name" placeholder="Nom">
@@ -117,7 +117,6 @@
 						J'ai lu et j'accepte les <a href="#">terms & conditions</a>
 					</label>
 				</div>
-				{{-- <a  class="primary-btn order-submit"> <button type="submit" form="myform">Valider la commande</button></a> --}}
 				<button class="primary-btn order-submit" type="submit" form="myform" ><a class="checkout_btn"> Valider la commande</a></button>
 				
 			</div>

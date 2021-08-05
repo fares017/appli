@@ -40,6 +40,6 @@ class LoginController extends Controller
     }
 
     protected function loggedOut(Request $request) {
-        return redirect()->route('acceuil');
+        return redirect()->route('acceuil',app()->getLocale());
     }
 }

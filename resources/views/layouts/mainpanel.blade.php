@@ -9,17 +9,20 @@
   <meta name="author" content="">
   <title>Starking-technology:Mon compte</title>
   <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  {{-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
+  <link type="text/css" rel="stylesheet" href="{{ url('vendor/bootstrap/css/bootstrap.min.css') }}" />
   <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  {{-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> --}}
+  <link type="text/css" rel="stylesheet" href="{{ url('vendor/font-awesome/css/font-awesome.min.css') }}" />
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+  <link href="{{ url('css/sb-admin.css')}}  rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="{{ url('css/sb-admin.css') }}" />
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="{{ route('home') }}">Starking-Technology</a>
+    <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">Starking-Technology</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                   aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,7 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="{{ route('home') }}">
+          <a class="nav-link" href="{{ route('home', app()->getLocale()) }}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Tableau de bord</span>
           </a>
@@ -39,7 +42,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="{{  route('wishlist.index')  }}">
+          <a class="nav-link" href="{{  route('wishlist.index', app()->getLocale())  }}">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
             <span class="nav-link-text">Votre liste d'envies</span>
           </a>
@@ -141,7 +144,7 @@
           </div>
         </li> --}}
         <li class="nav-item">
-            <button type="button" class="btn btn-success mr-2"><a id="anchor-color" href="{{ route('acceuil') }}"><i  class="fa fa-fw fa-sign-out"></i>Retourner vers la boutique</a></button>
+            <button type="button" class="btn btn-success mr-2"><a id="anchor-color" href="{{ route('acceuil', app()->getLocale()) }}"><i  class="fa fa-fw fa-sign-out"></i>Retourner vers la boutique</a></button>
         </li>
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
@@ -206,7 +209,7 @@
           <div class="modal-body">Sélectionnez « Déconnexion » ci-dessous si vous êtes prêt à mettre fin à votre session en cours.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-            <form id="panel-form" action="{{ route('logout')  }} " method="POST" >
+            <form id="panel-form" action="{{ route('logout', app()->getLocale())  }} " method="POST" >
               @csrf
               <a  id="anchor-color" onclick="document.getElementById('panel-form').submit();" class="btn btn-danger">Déconnexion</a>
             </form>
@@ -216,12 +219,22 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script type="text/javascript" src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script type="text/javascript" src="{{ URL::asset('js/sb-admin.min.js') }}"></script>
+
+
+
+    
+    {{-- <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin.min.js"></script> --}}
   </div>
 </body>
 

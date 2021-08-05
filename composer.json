@@ -14,6 +14,7 @@
         "intervention/image": "^2.6",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
+        "spatie/laravel-translatable": "^4.6",
         "tcg/voyager": "^1.4"
     },
     "require-dev": {

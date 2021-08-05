@@ -11,7 +11,7 @@
         Vous avez un problème? <a href="">Contactez-Nous</a>
       </p>
       <p class="lead">
-        <a class="btn btn-primary btn-sm" href="{{ route("acceuil") }}" role="button">Revenir à la boutique </a>
+        <a class="btn btn-primary btn-sm" href="{{ route("acceuil", app()->getLocale()) }}" role="button">Revenir à la boutique </a>
       </p>
     </div>
   

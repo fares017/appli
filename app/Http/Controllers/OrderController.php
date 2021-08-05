@@ -21,7 +21,7 @@ class OrderController extends Controller
         if(Cart::content()->isNotEmpty()){
             return view('order.checkout');
         }else{
-            return redirect()->route('acceuil');
+            return redirect()->route('acceuil', app()->getLocale());
         }
         
     }
@@ -57,7 +57,7 @@ class OrderController extends Controller
 
          // Verifier si la quantité chercher par le client existe
          if ($this->findustock()) {
-            return redirect()->route('cart.index')->with('danger', "Un des produits que vous avez selectionner n'est pas disponible");
+            return redirect()->route('cart.index', app()->getLocale())->with('danger', "Un des produits que vous avez selectionner n'est pas disponible");
         }
 
 
@@ -86,7 +86,7 @@ class OrderController extends Controller
         $this->updatestock();
         Cart::destroy();
 
-        return redirect()->route('success')->with("message", "Commande réussi");
+        return redirect()->route('success', app()->getLocale())->with("message", "Commande réussi");
 
     }
 

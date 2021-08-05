@@ -9,7 +9,7 @@
 		@yield('extra-meta')
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>StarKing-Technology:Montage et Vente de Micro-Ordinateur</title>
+		<title>StarKing-Technology: {{ _('titre') }}</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -81,9 +81,9 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="{{ route('wishlist.index') }}">
+									<a href="{{ route('wishlist.index', app()->getLocale()) }}">
 										<i class="fa fa-heart-o"></i>
-										<span>Listes d'envies</span>
+										<span>{{  _('master.wishlist') }}</span>
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -92,7 +92,7 @@
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Panier</span>
+										<span>{{ _('cart') }}</span>
 										<div class="qty">{{  Cart::count() }}</div>
 									</a>
 									<div class="cart-dropdown">
@@ -108,7 +108,7 @@
 															<h3 class="product-name"><a href="#">{{ $product->model->title }}</a></h3>
 															<h4 class="product-price"><span class="qty">{{ $product->qty }}x</span>{{ $product->model->getprice() }}</h4>
 														</div>
-														<form action="{{ route('cart.destroy', $product->rowId) }}" method="POST">
+														<form action="{{ route('cart.destroy', ['rowid' => $product->rowId , 'language' => app()->getLocale()] ) }}" method="POST">
 															@csrf
 															@method('DELETE')
 															<button type="submit" class="delete"><i class="fa fa-close"></i></button>
@@ -116,7 +116,7 @@
 													</div>
 												@endforeach			
 											@else
-											  <p>Votre panier est vide !</p>											
+											  <p>{{ _('master.empty_cart') }}</p>											
 											@endif
 										</div>
 										<div class="cart-summary">
@@ -124,11 +124,12 @@
 											<h5>Soustotal: {{ Getprice(Cart::subtotal()) }} </h5>
 										</div>
 										<div class="cart-btns">
-											<a href="{{ route('cart.index') }}">Voir panier</a>
+											<a href="{{ route('cart.index', app()->getLocale()) }}">Voir panier</a>
 											@if (Cart::content()->isNotEmpty())
-											<a href="{{ route('order.index') }}">Commander  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{ route('order.index', app()->getLocale()) }}">Commander  <i class="fa fa-arrow-circle-right"></i></a>
 											@else
-											<a href=" {{ route('acceuil') }}">Commander  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href=" {{ route('acceuil', app()->getLocale() ) }}">Commander  <i class="fa fa-arrow-circle-right"></i></a> 
+											
 											@endif
 											
 										</div>
@@ -156,29 +157,86 @@
 		</header>
 		<!-- /HEADER -->
 
-		<!-- NAVIGATION -->
+
+		<!-- menu -->
+
+
+   <!-- Fixed navbar -->
+					<nav class="navbar navbar-default ">
+						<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">Project name</a>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+							<li class="active"><a  href=" {{ route('acceuil' , app()->getLocale()) }}">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Contact</a></li>
+							
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ _('language')  }}<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+									<li><a href="{{ route(Route::currentRouteName(), array_merge(['fr'], array_slice(($rp = Route::current()->parameters()), 1, count($rp)))) }}">{{ _('Francais') }}</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a  href="{{ route(Route::currentRouteName(), array_merge(['en'], array_slice(($rp = Route::current()->parameters()), 1, count($rp)))) }}">{{ _('anglais')  }}</a></li>  
+									
+									</ul>
+								</li>
+							</ul> 
+						</div><!--/.nav-collapse -->
+						</div>
+					</nav>
+
+	   <!-- /menu -->
+
+		{{-- <!-- NAVIGATION -->
 		<nav id="navigation">
 			<!-- container -->
 			<div class="container">
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href=" {{ route('acceuil') }}">Home</a></li>
+					<ul class="main-nav nav navbar-nav pull-left">
+						<li class="active"><a href=" {{ route('acceuil' , app()->getLocale()) }}">Home</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						<li><a href="#">Categories</a></li>
 						<li><a href="#">Laptops</a></li>
 						<li><a href="#">Smartphones</a></li>
 						<li><a href="#">Cameras</a></li>
 						<li><a href="#">Accessories</a></li>
+	
 					</ul>
+					<ul  class="main-nav nav navbar-nav pull-right" >
+						<!-- Single button -->
+						<div id="language" class="btn-group ">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Action <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							</ul>
+						</div>
+					</ul> 
+					
 					<!-- /NAV -->
 				</div>
 				<!-- /responsive-nav -->
 			</div>
 			<!-- /container -->
 		</nav>
-		<!-- /NAVIGATION -->
+		<!-- /NAVIGATION --> --}}
 
 	
 	  @yield('content')
@@ -273,7 +331,7 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<li><a href="{{ route('cart.index')}}">Voir panier</a></li>
+									<li><a href=" ">Voir panier</a></li>
 									<li><a href="#">Wishlist</a></li>
 									<li><a href="#">Track My Order</a></li>
 									<li><a href="#">Help</a></li>

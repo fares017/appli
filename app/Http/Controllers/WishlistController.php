@@ -41,7 +41,6 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
- 
        $user_id = Auth::user()->id;
        $wishlist = Wishlist::where('user_id', $user_id)->first();
 
@@ -105,11 +104,11 @@ class WishlistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($rowId)
+    public function destroy($language ,$rowId)
     {
         $wishlist = request()->input('wishlist_id');
         $wishlistproduct = wishlistproduct::where('product_id',$rowId)->where('wishlist_id', $wishlist )->delete();
 
-        return redirect()->route('wishlist.index')->with('danger', 'le produit a été supprimer de la liste');
+        return redirect()->route('wishlist.index',  app()->getLocale() )->with('danger', 'le produit a été supprimer de la liste');
     }
 }

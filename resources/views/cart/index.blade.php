@@ -74,7 +74,7 @@
                             <td style="">{{ $product->model->title }}</td>
                             <td>In stock</td>
                             <td>
-                                <select name="qty" id="qty" class="custom-select" data-id="{{ $product->rowId }}"
+                                <select name="qty" id="qty" class="custom-select" data-id="{{ $product->rowId }}" data-lang = "{{ app()->getLocale() }}"
                                          data-stock="{{ $product->model->stock }}" >
                                     @for($i = 1; $i <= $product->model->stock; $i++)
                                     <option {{ $product->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
@@ -82,7 +82,7 @@
                                 </select>
                             <td class="text-right">{{ $product->model->getprice() }}</td>
                             <td class="text-right">
-                                <form action="{{ route('cart.destroy', $product->rowId) }}" method="POST">
+                                <form action="{{ route('cart.destroy',["rowid" => $product->rowId, "language" => app()->getLocale()] ) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> </button>     
@@ -123,15 +123,15 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-lg  btn-block btn-light" ><a href="{{ route('acceuil') }}">Continuer vos achats</a></button>
+                    <button class="btn btn-lg  btn-block btn-light" ><a href="{{ route('acceuil', app()->getLocale()) }}">Continuer vos achats</a></button>
                 </div>
                 @if (Cart::content()->isNotEmpty())
                 <div class="col-sm-12 col-md-6 text-right">
-                    <a href="{{ route("order.index") }}"><button class="btn btn-lg btn-block btn-danger text-uppercase">Passer à la caisse</button></a>                  
+                    <a href="{{ route("order.index", app()->getLocale()) }}"><button class="btn btn-lg btn-block btn-danger text-uppercase">Passer à la caisse</button></a>                  
                 </div>
                 @else
                 <div class="col-sm-12 col-md-6 text-right">
-                    <a href="{{ route("acceuil") }}"><button class="btn btn-lg btn-block btn-danger text-uppercase">Passer à la caisse</button></a>
+                    <a href="{{ route("acceuil", app()->getLocale()) }}"><button class="btn btn-lg btn-block btn-danger text-uppercase">Passer à la caisse</button></a>
                 </div> 
                 @endif
                 
@@ -148,18 +148,39 @@
         element.addEventListener('change', function () {
             const rowid = element.getAttribute('data-id');
             var stock = element.getAttribute('data-stock');
+            var lang = element.getAttribute('data-lang');
             axios.patch(`/panier/${rowid}`, {
                 qty: this.value,
                 stock: stock
                 })
                 .then(function (response) {
-                    window.location.href = '{{ route('cart.index') }}'
+                    window.location.href = '{{ route('cart.index', app()->getLocale()) }}'
                 })
                 .catch(function (error) {
                     console.log(error.response.data);
                 });
         });
     });
+
+
+
+    // var qty  = document.querySelectorAll('#qty');
+    // Array.from(qty).forEach((element) => {
+    //     element.addEventListener('change', function () {
+    //         const rowid = element.getAttribute('data-id');
+    //         var stock = element.getAttribute('data-stock');
+    //         axios.patch(` ${ app()->getLocale()}/panier/${rowid}`, {
+    //             qty: this.value,
+    //             stock: stock
+    //             })
+    //             .then(function (response) {
+    //                 window.location.href = '{{ route('cart.index', app()->getLocale()) }}'
+    //             })
+    //             .catch(function (error) {
+    //                 console.log(error.response.data);
+    //             });
+    //     });
+    // });
    
 
 

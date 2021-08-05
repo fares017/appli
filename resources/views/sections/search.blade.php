@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <div class="header-search">
-        <form action="{{ route('product.search') }}">
+        <form action="{{ route('product.search', app()->getLocale() ) }}">  
             <select class="input-select">
                 <option value="0">Categories</option>
                 @foreach (App\Category::all() as $category)

@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
-class Product extends Model
+class Product extends Model 
 {
+   //translation part
+  use HasTranslations;
+      
+  public $translatable = ['title', 'description'];
 
    /**
      * The attributes that are mass assignable.

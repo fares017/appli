@@ -82,7 +82,7 @@
 								</div>
 									
 									<span class="cart-form">
-										<form action="{{ route('cart.store') }}" method="POST" >
+										<form action="{{ route('cart.store', app()->getLocale()) }}" method="POST" >
 											@csrf
 											<input type="hidden" name="product_id" value="{{ $product->id }}">
 											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Ajouter au panier</button>

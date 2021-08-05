@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductController extends Controller
@@ -19,16 +20,17 @@ class ProductController extends Controller
         } else {
             $products = Product::with('categories')->paginate(6);
         }
-
+          
         return view('produits.index')->with('products', $products);
       }
 
 
       //Fonction pour afficher un produit selectionné
-      public function show($slug){
+      public function show($language , $slug){
+          
+        //dd(Route::currentRouteName(), Route::current()->parameters() );
           $product = Product::where('slug', $slug)->firstOrfail();
-
-         return view('produits.product')->with('product', $product);
+         return view('produits.product', ['product' => $product])->with('language', $language);
       }
 
       //Fonction de la barre de recheche
