@@ -49,11 +49,7 @@ Route::group(['prefix' => '{language}'], function () {
 
 
 
-            //voyager routes
-            Route::group(['prefix' => 'admin'], function () {
-                Voyager::routes();
-            });
-
+          
 
             //authentification routes
             Auth::routes();
