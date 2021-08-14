@@ -18,7 +18,7 @@ class ProductController extends Controller
                 $query->where('slug', request()->categorie);
             })->get();
         } else {
-            $products = Product::with('categories')->paginate(6);
+            $products = Product::with('categories')->paginate(8);
         }
           
         return view('produits.index')->with('products', $products);
