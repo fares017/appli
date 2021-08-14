@@ -12,6 +12,23 @@
 		e.stopPropagation();
 	});
 
+	///////////////////////////////////////
+
+	// MARQUE CAROUSEL
+	$('.top-buffer').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		autoplay : true,
+		infinite: true,
+		speed: 300,
+		dots: false,
+		arrows: true,
+		//fade: true,
+	  });
+
+
+	
+
 	/////////////////////////////////////////
 
 	// Products Slick

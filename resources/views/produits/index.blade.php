@@ -1,36 +1,73 @@
 @extends('layouts.master')
 
 @section('content')
+ <div class="container">
+     <div class="row">
+		<div class="col-md-3">
+			<div class="list-group category_panel">
+				<a href="#" class="list-group-item active " id="panel_tabel">
+				  NOS PRODUITS
+				</a>
+				<a href="#" class="list-group-item">Bloc d'alimentation</a>
+				<a href="#" class="list-group-item">Boitier</a>
+				<a href="#" class="list-group-item">Carte mère</a>
+				<a href="#" class="list-group-item">Cartes Graphique</a>
+				<a href="#" class="list-group-item">CPU/ Processeur</a>
+				<a href="#" class="list-group-item">Disque Dur (SSD)</a>
+				<a href="#" class="list-group-item">Ecrans PC</a>
+				<a href="#" class="list-group-item">Extracteur</a>
+				<a href="#" class="list-group-item">Mémoires</a>
+				<a href="#" class="list-group-item">Périphériques</a>
+				<a href="#" class="list-group-item">Refroidissement liquide</a>
+				<a href="#" class="list-group-item">Ventilateur</a>
+			  </div>
+		</div>
+		 <div class="col-md-9">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+				  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				  <li data-target="#myCarousel" data-slide-to="1"></li>
+				</ol>
+			  
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+				  <div class="item active">
+					<img src="./img/img01.jpg" alt="Los Angeles">
+				  </div>
+			  
+				  <div class="item">
+					<img src="./img/img02.jpg" alt="Chicago">
+				  </div>
+			  
+				</div>
+			  
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				  <span class="glyphicon glyphicon-chevron-left"></span>
+				  <span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control " href="#myCarousel" data-slide="next">
+				  <span class="glyphicon glyphicon-chevron-right"></span>
+				  <span class="sr-only">Next</span>
+				</a>
+			</div>
+			   <div class="row top-buffer">
+				   @for ($i = 2; $i < 16; $i++)
+					<div class="col-xs-6 col-md-3">
+						<a href="#" class="thumbnail">
+						<img src="../img/logo{{ $i }}.jpg" alt="...">
+						</a>
+					</div>
+				   @endfor
+				   <div class="btn-group btn-group-xs" role="group" aria-label="...">...</div>
+			  </div>
+			
+		 </div>
+	 </div>
+ </div>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Indicators -->
-	<ol class="carousel-indicators">
-	  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	  <li data-target="#myCarousel" data-slide-to="1"></li>
-	</ol>
-  
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner">
-	  <div class="item active">
-		<img src="./img/img01.jpg" alt="Los Angeles">
-	  </div>
-  
-	  <div class="item">
-		<img src="./img/img02.jpg" alt="Chicago">
-	  </div>
-  
-	</div>
-  
-	<!-- Left and right controls -->
-	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-	  <span class="glyphicon glyphicon-chevron-left"></span>
-	  <span class="sr-only">Previous</span>
-	</a>
-	<a class="right carousel-control " href="#myCarousel" data-slide="next">
-	  <span class="glyphicon glyphicon-chevron-right"></span>
-	  <span class="sr-only">Next</span>
-	</a>
-  </div>
+
 
 <!-- SECTION -->
 <div class="section">

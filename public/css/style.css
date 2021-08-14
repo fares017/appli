@@ -2290,3 +2290,21 @@ background-color: #0b5deb;
 h5.text-center {
   color : #D10024;
 }
+.top-buffer{
+  margin-top: 20px;
+}
+.marque_container{
+  margin: 10px;
+}
+
+#panel_tabel{
+  background-color : #D10024;
+  border-color: #D10024 ;
+}
+.category_panel{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.top-buffer div a{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
