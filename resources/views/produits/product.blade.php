@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 	<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
@@ -32,11 +33,15 @@
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
-							@foreach (json_decode($product->images, true) as $image)
 							<div class="product-preview">
-								<img src="{{ asset('storage/'.$image)  }}"  alt="">
+								<img src="{{ asset('storage/'.$product->image )  }}"  alt="">
+							</div>
+						    @foreach (json_decode($product->images, true) as $image)
+							<div class="product-preview">
+								<img src="{{ asset('storage/'.$image )  }}"  alt="">
 							</div>
 							@endforeach
+							
 						</div>
 					</div>
 					<!-- /Product main img -->
