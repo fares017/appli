@@ -8,18 +8,9 @@
 				<a href="#" class="list-group-item active " id="panel_tabel">
 				  NOS PRODUITS
 				</a>
-				<a href="#" class="list-group-item">Bloc d'alimentation</a>
-				<a href="#" class="list-group-item">Boitier</a>
-				<a href="#" class="list-group-item">Carte mère</a>
-				<a href="#" class="list-group-item">Cartes Graphique</a>
-				<a href="#" class="list-group-item">CPU/ Processeur</a>
-				<a href="#" class="list-group-item">Disque Dur (SSD)</a>
-				<a href="#" class="list-group-item">Ecrans PC</a>
-				<a href="#" class="list-group-item">Extracteur</a>
-				<a href="#" class="list-group-item">Mémoires</a>
-				<a href="#" class="list-group-item">Périphériques</a>
-				<a href="#" class="list-group-item">Refroidissement liquide</a>
-				<a href="#" class="list-group-item">Ventilateur</a>
+				@foreach ($categories as $category)
+					<a href="#" class="list-group-item">{{ $category->getTranslatedAttribute('name', app()->getLocale(), 'en')  }}</a>
+				@endforeach
 			  </div>
 		</div>
 		 <div class="col-md-9">
@@ -60,7 +51,11 @@
 						</a>
 					</div>
 				   @endfor
-				   <div class="btn-group btn-group-xs" role="group" aria-label="...">...</div>
+			  </div>
+			  <div class="row">
+				<H5 class="text-center"> <a href=""><div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default btn-danger">VOIR TOUS NOS MARQUES DISPONIBLE</button>
+				  </div></a> </H5>
 			  </div>
 			
 		 </div>
@@ -83,8 +78,8 @@
 					<div class="section-nav">
 						<ul class="section-tab-nav tab-nav">
 							{{-- <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li> --}}
-							@foreach (App\Category::all() as $category)
-							<li class="{{ $category->slug == request()->categorie ?"active":"" }}"><a href="{{ route('acceuil', ['categorie' => $category->slug, 'language' => app()->getLocale()]) }}"  >{{ $category->name }}</a></li>
+							@foreach ( App\Category::with('translations')->get() as $category)
+							<li class="{{ $category->slug == request()->categorie ?"active":"" }}"><a href="{{ route('acceuil', ['categorie' => $category->slug, 'language' => app()->getLocale()]) }}"  >{{  $category->getTranslatedAttribute('name', app()->getLocale(), 'en')  }}</a></li>
 							@endforeach
 						</ul>
 					</div>
@@ -115,10 +110,10 @@
 									<div class="product-body">
 										<p class="product-category">
 											@foreach ($product->categories as $category)
-												{{ $category->name }}/
+												{{ $category->getTranslatedAttribute('name', app()->getLocale(), 'en') }}/
 											@endforeach
 										</p>
-									    <h3 class="product-name"><a href="{{  route('product.show', ['slug' => $product->slug, 'language' => app()->getLocale() ]) }}">{{ $product->title }}</a></h3>
+									    <h3 class="product-name"><a href="{{  route('product.show', ['slug' => $product->slug, 'language' => app()->getLocale() ]) }}">{{ $product->getTranslatedAttribute('title', app()->getLocale(), 'en') }}</a></h3>
 										<h4 class="product-price">{{ $product->getprice() }} <del class="product-old-price">{{ $product->getprice() }}</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>

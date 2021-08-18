@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
@@ -18,10 +19,19 @@ class ProductController extends Controller
                 $query->where('slug', request()->categorie);
             })->get();
         } else {
-            $products = Product::with('categories')->paginate(8);
+            // $products = Product::with('categories')->paginate(8);
+            $products = Product::paginate(8);
+            $products->load('translations');
+            $categories = Category::all();
+            $categories->load('translations');
+          //  dd($categories);
+
         }
           
-        return view('produits.index')->with('products', $products);
+        // return view('produits.index')->with('products', $products);
+           return view('produits.index')->with(['products' => $products, 'categories' => $categories]);
+
+           
       }
 
 

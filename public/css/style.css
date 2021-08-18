@@ -535,10 +535,10 @@ background-color: #0b5deb;
 
 .header-search form .search-btn {
   height: 40px;
-  width: 100px;
+  /* width: 100px; */
   background: #D10024;
   color: #FFF;
-  font-weight: 700;
+  /* font-weight: 700; */
   border: none;
   border-radius: 0px 40px 40px 0px;
 }
@@ -2307,4 +2307,7 @@ h5.text-center {
 
 .top-buffer div a{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.row btn-group{
+  margin: auto auto;
 }

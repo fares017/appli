@@ -2,14 +2,14 @@
 
 namespace App;
 
+use TCG\Voyager\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Product extends Model 
 {
    //translation part
-  use HasTranslations;
-      
+ 
+  use Translatable;   
   public $translatable = ['title', 'description'];
 
    /**

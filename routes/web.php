@@ -18,6 +18,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Intervention\Image\ImageManagerStatic;
 
 
+Route::group(['prefix' => 'admin'], function () {
+  Voyager::routes();
+});
+
 Route::redirect('/', '/en');
 
 Route::group(['prefix' => '{language}'], function () {
@@ -65,6 +69,12 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index')->middleware('auth');
             Route::delete('/wishlist/{rowid}', 'WishlistController@destroy')->name('wishlist.destroy')->middleware('auth');
 
+            
+
     });
+
+    
   //cart update
     Route::patch('/panier/{rowid}', 'CartController@update')->name('cart.update');
+
+
