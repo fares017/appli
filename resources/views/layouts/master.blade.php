@@ -9,7 +9,7 @@
 		@yield('extra-meta')
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>StarKing-Technology: {{ _('titre') }}</title>
+		<title>StarKing-Technology: {{ __('titre') }}</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -83,7 +83,7 @@
 								<div>
 									<a href="{{ route('wishlist.index', app()->getLocale()) }}">
 										<i class="fa fa-heart-o"></i>
-										<span>{{  _('master.wishlist') }}</span>
+										<span>{{  __('master.wishlist') }}</span>
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -92,7 +92,7 @@
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>{{ _('cart') }}</span>
+										<span>{{ __('cart') }}</span>
 										<div class="qty">{{  Cart::count() }}</div>
 									</a>
 									<div class="cart-dropdown">
