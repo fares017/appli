@@ -83,7 +83,8 @@
 								<div>
 									<a href="{{ route('wishlist.index', app()->getLocale()) }}">
 										<i class="fa fa-heart-o"></i>
-										<span>{{  __('master.wishlist') }}</span>
+										{{-- <span>{{  __('master.wishlist') }}</span> --}}
+										<span>Liste d'envies</span>
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -92,7 +93,8 @@
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>{{ __('cart') }}</span>
+										{{-- <span>{{ __('cart') }}</span> --}}
+										<span>Cart</span>
 										<div class="qty">{{  Cart::count() }}</div>
 									</a>
 									<div class="cart-dropdown">
