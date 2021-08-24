@@ -9,7 +9,7 @@
 		@yield('extra-meta')
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>StarKing-Technology: {{ __('titre') }}</title>
+		<title>StarKing-Technology</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -118,7 +118,7 @@
 													</div>
 												@endforeach			
 											@else
-											  <p>{{ _('master.empty_cart') }}</p>											
+											  <p>{{ __('master.empty_cart') }}</p>											
 											@endif
 										</div>
 										<div class="cart-summary">
