@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Intervention\Image\ImageManagerStatic;
 
+//firebase
+Route::get('firebase','FirebaseController@index');
 
 Route::group(['prefix' => 'admin'], function () {
   Voyager::routes();
@@ -76,5 +78,7 @@ Route::group(['prefix' => '{language}'], function () {
     
   //cart update
     Route::patch('/panier/{rowid}', 'CartController@update')->name('cart.update');
+
+  
 
 
