@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Support\Facades\URL;
@@ -24,12 +25,13 @@ class ProductController extends Controller
             $products->load('translations');
             $categories = Category::all();
             $categories->load('translations');
-          //  dd($categories);
+            $brands = Brand::all();
+         
 
         }
           
         // return view('produits.index')->with('products', $products);
-           return view('produits.index')->with(['products' => $products, 'categories' => $categories]);
+           return view('produits.index')->with(['products' => $products, 'categories' => $categories, 'brands' => $brands]);
 
            
       }

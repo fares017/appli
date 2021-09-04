@@ -44,13 +44,20 @@
 				</a>
 			</div>
 			   <div class="row top-buffer">
-				   @for ($i = 2; $i < 16; $i++)
+				   @foreach ($brands as $brand)
+				   <div class="col-xs-6 col-md-3">
+					<a href="#" class="thumbnail">
+					<img src="{{ asset('storage/'.$brand->logo) }}" alt="...">
+					</a>
+				</div>
+				   @endforeach
+				   {{-- @for ($i = 2; $i < 16; $i++)
 					<div class="col-xs-6 col-md-3">
 						<a href="#" class="thumbnail">
 						<img src="../img/logo{{ $i }}.jpg" alt="...">
 						</a>
 					</div>
-				   @endfor
+				   @endfor --}}
 			  </div>
 			  <div class="row">
 				<H5 class="text-center"> <a href=""><div class="btn-group" role="group" aria-label="...">

@@ -39,4 +39,9 @@ class Product extends Model
         return $this->belongsToMany('App\Wishlist');
     }
     
+    public function brands()
+    {
+        return $this->belongsToMany('App\Brand');
+    }
+    
 }
